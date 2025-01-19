@@ -23,6 +23,8 @@ public class HomeController {
         instance.setVariable("itemVariableName", item);
 
 
+        //identify process calling bpm
+        instance.businessKey("myProcessBusinessKey");
 
         instance.executeWithVariablesInReturn();
         return "bpm executed";
