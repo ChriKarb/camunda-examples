@@ -18,6 +18,12 @@ public class HomeController {
     public String execute() {
         ProcessEngine engine = ProcessEngines.getDefaultProcessEngine();
         ProcessInstantiationBuilder instance = engine.getRuntimeService().createProcessInstanceByKey("Process_0y4kdqm");
+        // variable handling
+        String item = "Computer";
+        instance.setVariable("itemVariableName", item);
+
+
+
         instance.executeWithVariablesInReturn();
         return "bpm executed";
     }

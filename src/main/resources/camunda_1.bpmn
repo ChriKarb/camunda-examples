@@ -12,7 +12,11 @@
     <bpmn:scriptTask id="Activity_196ixqr" name="Print a message" scriptFormat="JavaScript">
       <bpmn:incoming>Flow_0yu9gbv</bpmn:incoming>
       <bpmn:outgoing>Flow_0lxemtr</bpmn:outgoing>
-      <bpmn:script>print('this is from bpm');</bpmn:script>
+      <bpmn:script>print('####### this is from bpm');
+
+print(itemVariableName);
+
+print(execution.getVariable("itemVariableName"));</bpmn:script>
     </bpmn:scriptTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
