@@ -14,6 +14,7 @@ public class HomeController {
     public String home() {
         return "Oh Johny";
     }
+
     @RequestMapping(value="/execute", method = RequestMethod.GET)
     public String execute() {
         ProcessEngine engine = ProcessEngines.getDefaultProcessEngine();
@@ -28,5 +29,14 @@ public class HomeController {
 
         instance.executeWithVariablesInReturn();
         return "bpm executed";
+    }
+
+    @RequestMapping(value="/tasks", method = RequestMethod.GET)
+    public String tasks() {
+        ProcessEngine engine = ProcessEngines.getDefaultProcessEngine();
+        ProcessInstantiationBuilder instance = engine.getRuntimeService().createProcessInstanceByKey("Process_0pje9n8");
+
+        instance.executeWithVariablesInReturn();
+        return "task  executed";
     }
 }

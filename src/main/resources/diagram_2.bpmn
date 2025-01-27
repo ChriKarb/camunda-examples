@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_19vxlu3" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.31.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+  <bpmn:process id="Process_0pje9n8" isExecutable="true">
+    <bpmn:extensionElements />
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0ta1rjt</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1dyfgku">
+      <bpmn:incoming>Flow_0hrmuxy</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0ta1rjt" sourceRef="StartEvent_1" targetRef="Activity_0eoqbnz" />
+    <bpmn:sequenceFlow id="Flow_0wksv6r" sourceRef="Activity_0eoqbnz" targetRef="Activity_073yrog" />
+    <bpmn:scriptTask id="Activity_0eoqbnz" name="Initialize User Object" scriptFormat="JavaScript" camunda:resultVariable="returnValueUserObj">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="userObj3">
+            <camunda:script scriptFormat="javascript">var userObj = {
+    id: 2,
+    name: "OtherOutputvariable"
+
+}
+
+
+
+userObj;</camunda:script>
+          </camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ta1rjt</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wksv6r</bpmn:outgoing>
+      <bpmn:script>var userObj = {
+    id: 1,
+    name: "JSname"
+
+}
+
+print("userObj ::" + userObj.name);
+print("userObj.stringify ::" + JSON.stringify(userObj));
+
+
+userObj;</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_073yrog" name="Initialize New Object" scriptFormat="JavaScript" camunda:resource="script.js">
+      <bpmn:incoming>Flow_0wksv6r</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hrmuxy</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_0hrmuxy" sourceRef="Activity_073yrog" targetRef="Event_1dyfgku" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0pje9n8">
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="182" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pfvfa5_di" bpmnElement="Activity_0eoqbnz">
+        <dc:Bounds x="240" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dyfgku_di" bpmnElement="Event_1dyfgku">
+        <dc:Bounds x="772" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1fjyxn8" bpmnElement="Activity_073yrog">
+        <dc:Bounds x="400" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0ta1rjt_di" bpmnElement="Flow_0ta1rjt">
+        <di:waypoint x="218" y="120" />
+        <di:waypoint x="240" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wksv6r_di" bpmnElement="Flow_0wksv6r">
+        <di:waypoint x="340" y="120" />
+        <di:waypoint x="400" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hrmuxy_di" bpmnElement="Flow_0hrmuxy">
+        <di:waypoint x="500" y="120" />
+        <di:waypoint x="772" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
