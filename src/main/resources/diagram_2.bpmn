@@ -6,7 +6,7 @@
       <bpmn:outgoing>Flow_0ta1rjt</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:endEvent id="Event_1dyfgku">
-      <bpmn:incoming>Flow_0hrmuxy</bpmn:incoming>
+      <bpmn:incoming>Flow_0eikj5t</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0ta1rjt" sourceRef="StartEvent_1" targetRef="Activity_0eoqbnz" />
     <bpmn:sequenceFlow id="Flow_0wksv6r" sourceRef="Activity_0eoqbnz" targetRef="Activity_073yrog" />
@@ -62,7 +62,12 @@ userObj;</bpmn:script>
       <bpmn:incoming>Flow_0wksv6r</bpmn:incoming>
       <bpmn:outgoing>Flow_0hrmuxy</bpmn:outgoing>
     </bpmn:scriptTask>
-    <bpmn:sequenceFlow id="Flow_0hrmuxy" sourceRef="Activity_073yrog" targetRef="Event_1dyfgku" />
+    <bpmn:sequenceFlow id="Flow_0hrmuxy" sourceRef="Activity_073yrog" targetRef="Activity_1hktm3l" />
+    <bpmn:sequenceFlow id="Flow_0eikj5t" sourceRef="Activity_1hktm3l" targetRef="Event_1dyfgku" />
+    <bpmn:serviceTask id="Activity_1hktm3l" name="Call FetchEmail Delegate" camunda:class="com.example.delegates.FetchEmail">
+      <bpmn:incoming>Flow_0hrmuxy</bpmn:incoming>
+      <bpmn:outgoing>Flow_0eikj5t</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0pje9n8">
@@ -79,6 +84,10 @@ userObj;</bpmn:script>
         <dc:Bounds x="400" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_03wnna1_di" bpmnElement="Activity_1hktm3l">
+        <dc:Bounds x="580" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0ta1rjt_di" bpmnElement="Flow_0ta1rjt">
         <di:waypoint x="218" y="120" />
         <di:waypoint x="240" y="120" />
@@ -89,6 +98,10 @@ userObj;</bpmn:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0hrmuxy_di" bpmnElement="Flow_0hrmuxy">
         <di:waypoint x="500" y="120" />
+        <di:waypoint x="580" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0eikj5t_di" bpmnElement="Flow_0eikj5t">
+        <di:waypoint x="680" y="120" />
         <di:waypoint x="772" y="120" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
