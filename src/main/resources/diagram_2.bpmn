@@ -6,7 +6,7 @@
       <bpmn:outgoing>Flow_0ta1rjt</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:endEvent id="Event_1dyfgku">
-      <bpmn:incoming>Flow_0eikj5t</bpmn:incoming>
+      <bpmn:incoming>Flow_017gqbv</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0ta1rjt" sourceRef="StartEvent_1" targetRef="Activity_0eoqbnz" />
     <bpmn:sequenceFlow id="Flow_0wksv6r" sourceRef="Activity_0eoqbnz" targetRef="Activity_073yrog" />
@@ -63,10 +63,15 @@ userObj;</bpmn:script>
       <bpmn:outgoing>Flow_0hrmuxy</bpmn:outgoing>
     </bpmn:scriptTask>
     <bpmn:sequenceFlow id="Flow_0hrmuxy" sourceRef="Activity_073yrog" targetRef="Activity_1hktm3l" />
-    <bpmn:sequenceFlow id="Flow_0eikj5t" sourceRef="Activity_1hktm3l" targetRef="Event_1dyfgku" />
+    <bpmn:sequenceFlow id="Flow_0eikj5t" sourceRef="Activity_1hktm3l" targetRef="Activity_08d2gxz" />
     <bpmn:serviceTask id="Activity_1hktm3l" name="Call FetchEmail Delegate" camunda:class="com.example.delegates.FetchEmail">
       <bpmn:incoming>Flow_0hrmuxy</bpmn:incoming>
       <bpmn:outgoing>Flow_0eikj5t</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_017gqbv" sourceRef="Activity_08d2gxz" targetRef="Event_1dyfgku" />
+    <bpmn:serviceTask id="Activity_08d2gxz" name="Call UserObj Delegate" camunda:delegateExpression="${fetchUserObjDelegate}">
+      <bpmn:incoming>Flow_0eikj5t</bpmn:incoming>
+      <bpmn:outgoing>Flow_017gqbv</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -77,15 +82,19 @@ userObj;</bpmn:script>
       <bpmndi:BPMNShape id="Activity_0pfvfa5_di" bpmnElement="Activity_0eoqbnz">
         <dc:Bounds x="240" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1dyfgku_di" bpmnElement="Event_1dyfgku">
-        <dc:Bounds x="772" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1fjyxn8" bpmnElement="Activity_073yrog">
         <dc:Bounds x="400" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_03wnna1_di" bpmnElement="Activity_1hktm3l">
         <dc:Bounds x="580" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dyfgku_di" bpmnElement="Event_1dyfgku">
+        <dc:Bounds x="1002" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cb59yl_di" bpmnElement="Activity_08d2gxz">
+        <dc:Bounds x="730" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0ta1rjt_di" bpmnElement="Flow_0ta1rjt">
@@ -102,7 +111,11 @@ userObj;</bpmn:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0eikj5t_di" bpmnElement="Flow_0eikj5t">
         <di:waypoint x="680" y="120" />
-        <di:waypoint x="772" y="120" />
+        <di:waypoint x="730" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_017gqbv_di" bpmnElement="Flow_017gqbv">
+        <di:waypoint x="830" y="120" />
+        <di:waypoint x="1002" y="120" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
