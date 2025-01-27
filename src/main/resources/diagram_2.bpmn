@@ -33,6 +33,12 @@ userObj;</camunda:script>
     name: "JSname"
 
 }
+var userObj2 = {
+    id: 10,
+    name: "userObjVariableFromExecution"
+
+}
+execution.setVariable("userObjVariableFromExecution",userObj2);
 
 print("userObj ::" + userObj.name);
 print("userObj.stringify ::" + JSON.stringify(userObj));
