@@ -13,6 +13,17 @@
     <bpmn:scriptTask id="Activity_0eoqbnz" name="Initialize User Object" scriptFormat="JavaScript" camunda:resultVariable="returnValueUserObj">
       <bpmn:extensionElements>
         <camunda:inputOutput>
+          <camunda:inputParameter name="userObj5">
+            <camunda:script scriptFormat="Javascript">var userObj = {
+    id: 9,
+    name: "VariableFromInputVariable"
+
+}
+
+
+
+userObj;</camunda:script>
+          </camunda:inputParameter>
           <camunda:outputParameter name="userObj3">
             <camunda:script scriptFormat="javascript">var userObj = {
     id: 2,
@@ -43,6 +54,7 @@ execution.setVariable("userObjVariableFromExecution",userObj2);
 print("userObj ::" + userObj.name);
 print("userObj.stringify ::" + JSON.stringify(userObj));
 
+print("userObjFromInputVariable.stringify from UserTask ::" + JSON.stringify(userObj5));
 
 userObj;</bpmn:script>
     </bpmn:scriptTask>
