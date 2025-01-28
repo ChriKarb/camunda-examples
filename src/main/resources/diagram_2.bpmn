@@ -6,7 +6,7 @@
       <bpmn:outgoing>Flow_0ta1rjt</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:endEvent id="Event_1dyfgku">
-      <bpmn:incoming>Flow_017gqbv</bpmn:incoming>
+      <bpmn:incoming>Flow_1hq8184</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0ta1rjt" sourceRef="StartEvent_1" targetRef="Activity_0eoqbnz" />
     <bpmn:sequenceFlow id="Flow_0wksv6r" sourceRef="Activity_0eoqbnz" targetRef="Activity_073yrog" />
@@ -68,10 +68,26 @@ userObj;</bpmn:script>
       <bpmn:incoming>Flow_0hrmuxy</bpmn:incoming>
       <bpmn:outgoing>Flow_0eikj5t</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_017gqbv" sourceRef="Activity_08d2gxz" targetRef="Event_1dyfgku" />
+    <bpmn:sequenceFlow id="Flow_017gqbv" sourceRef="Activity_08d2gxz" targetRef="Activity_0r3froi" />
     <bpmn:serviceTask id="Activity_08d2gxz" name="Call UserObj Delegate" camunda:delegateExpression="${fetchUserObjDelegate}">
       <bpmn:incoming>Flow_0eikj5t</bpmn:incoming>
       <bpmn:outgoing>Flow_017gqbv</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1hq8184" sourceRef="Activity_0r3froi" targetRef="Event_1dyfgku" />
+    <bpmn:serviceTask id="Activity_0r3froi" name="Call UserDeparment" camunda:expression="${userDepartmentService.getDepartment()}" camunda:resultVariable="tempUserOutput">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="Output_3p9cdno">
+            <camunda:script scriptFormat="JavaScript">print("from service::" + tempUserOutput);
+
+returnValueUserObj.department = tempUserOutput;
+
+print("current userObj" + JSON.stringify(returnValueUserObj));</camunda:script>
+          </camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_017gqbv</bpmn:incoming>
+      <bpmn:outgoing>Flow_1hq8184</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -97,6 +113,9 @@ userObj;</bpmn:script>
         <dc:Bounds x="730" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14c26ii_di" bpmnElement="Activity_0r3froi">
+        <dc:Bounds x="860" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0ta1rjt_di" bpmnElement="Flow_0ta1rjt">
         <di:waypoint x="218" y="120" />
         <di:waypoint x="240" y="120" />
@@ -115,6 +134,10 @@ userObj;</bpmn:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_017gqbv_di" bpmnElement="Flow_017gqbv">
         <di:waypoint x="830" y="120" />
+        <di:waypoint x="860" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hq8184_di" bpmnElement="Flow_1hq8184">
+        <di:waypoint x="960" y="120" />
         <di:waypoint x="1002" y="120" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
