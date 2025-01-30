@@ -19,7 +19,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>3.3.3</version>
+        <version>3.3.6</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -31,6 +31,15 @@
         <scope>import</scope>
         <type>pom</type>
       </dependency>
+
+        <dependency>
+          <groupId>org.camunda.connect</groupId>
+          <artifactId>camunda-connect-bom</artifactId>
+          <scope>import</scope>
+          <type>pom</type>
+          <version>7.22.0</version>
+        </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -73,7 +82,32 @@
     <dependency>
       <groupId>org.camunda.bpm</groupId>
       <artifactId>camunda-engine-plugin-connect</artifactId>
+      <version>7.22.0</version>
     </dependency>
+    <dependency>
+      <groupId>org.camunda.connect</groupId>
+      <artifactId>camunda-connect-http-client</artifactId>
+      <version>7.22.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.camunda.connect</groupId>
+      <artifactId>camunda-connect-core</artifactId>
+      <version>7.22.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.camunda.connect</groupId>
+      <artifactId>camunda-connect-connectors-all</artifactId>
+      <version>7.22.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.11</version>
+    </dependency>
+
 
   </dependencies>
 
