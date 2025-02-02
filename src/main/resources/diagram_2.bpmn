@@ -6,7 +6,7 @@
       <bpmn:outgoing>Flow_0ta1rjt</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:endEvent id="Event_1dyfgku">
-      <bpmn:incoming>Flow_0z0q718</bpmn:incoming>
+      <bpmn:incoming>Flow_14ey2ok</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0ta1rjt" sourceRef="StartEvent_1" targetRef="Activity_0eoqbnz" />
     <bpmn:sequenceFlow id="Flow_0wksv6r" sourceRef="Activity_0eoqbnz" targetRef="Activity_073yrog" />
@@ -89,32 +89,44 @@ print("current userObj" + JSON.stringify(returnValueUserObj));</camunda:script>
       <bpmn:incoming>Flow_017gqbv</bpmn:incoming>
       <bpmn:outgoing>Flow_1hq8184</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_0z0q718" sourceRef="Activity_1fk6etk" targetRef="Event_1dyfgku" />
+    <bpmn:sequenceFlow id="Flow_0z0q718" sourceRef="Activity_1fk6etk" targetRef="Activity_1fiebel" />
     <bpmn:serviceTask id="Activity_1fk6etk" name="Call Rest endpoint">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
             <camunda:inputParameter name="url">https://reqres.in/api/users</camunda:inputParameter>
             <camunda:inputParameter name="method">GET</camunda:inputParameter>
+            <camunda:outputParameter name="outputResponse">
+              <camunda:script scriptFormat="Javascript">print("response ::" + response);
+response;</camunda:script>
+            </camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
         </camunda:connector>
-        <camunda:inputOutput>
-          <camunda:outputParameter name="output">
-            <camunda:script scriptFormat="Javascript">print("response ::" + response);
-
-response;</camunda:script>
-          </camunda:outputParameter>
-        </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1hq8184</bpmn:incoming>
       <bpmn:outgoing>Flow_0z0q718</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:task id="Activity_1fiebel" name="Pritn API Output">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="OutPutAPI">
+            <camunda:script scriptFormat="Javascript">print("response::" +outputResponse);</camunda:script>
+          </camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0z0q718</bpmn:incoming>
+      <bpmn:outgoing>Flow_14ey2ok</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_14ey2ok" sourceRef="Activity_1fiebel" targetRef="Event_1dyfgku" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0pje9n8">
       <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="182" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dyfgku_di" bpmnElement="Event_1dyfgku">
+        <dc:Bounds x="1382" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0pfvfa5_di" bpmnElement="Activity_0eoqbnz">
         <dc:Bounds x="240" y="80" width="100" height="80" />
@@ -134,11 +146,12 @@ response;</camunda:script>
       <bpmndi:BPMNShape id="Activity_14c26ii_di" bpmnElement="Activity_0r3froi">
         <dc:Bounds x="860" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1dyfgku_di" bpmnElement="Event_1dyfgku">
-        <dc:Bounds x="1382" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1xb772d_di" bpmnElement="Activity_1fk6etk">
         <dc:Bounds x="1050" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1fiebel_di" bpmnElement="Activity_1fiebel">
+        <dc:Bounds x="1190" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0ta1rjt_di" bpmnElement="Flow_0ta1rjt">
         <di:waypoint x="218" y="120" />
@@ -166,6 +179,10 @@ response;</camunda:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0z0q718_di" bpmnElement="Flow_0z0q718">
         <di:waypoint x="1150" y="120" />
+        <di:waypoint x="1190" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14ey2ok_di" bpmnElement="Flow_14ey2ok">
+        <di:waypoint x="1290" y="120" />
         <di:waypoint x="1382" y="120" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
