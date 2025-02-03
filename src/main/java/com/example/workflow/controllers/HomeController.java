@@ -3,6 +3,7 @@ package com.example.workflow.controllers;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.ProcessEngines;
 import org.camunda.bpm.engine.runtime.ProcessInstantiationBuilder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,5 +39,14 @@ public class HomeController {
 
         instance.executeWithVariablesInReturn();
         return "task  executed";
+    }
+    ///executeBPM/sequenceflow_execute
+    @RequestMapping(value="/executeBPM/{processByName}", method = RequestMethod.GET)
+    public String execute(@PathVariable("processByName") String processByName) {
+        ProcessEngine engine = ProcessEngines.getDefaultProcessEngine();
+        ProcessInstantiationBuilder instance = engine.getRuntimeService().createProcessInstanceByKey(processByName);
+
+        instance.executeWithVariablesInReturn();
+        return "bpm executed ::" + processByName;
     }
 }
